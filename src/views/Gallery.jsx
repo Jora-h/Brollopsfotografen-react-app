@@ -1,3 +1,4 @@
+import React from 'react';
 import BrollopFotoLogo from "../assets/icon-pictures/brollop-foto-logo.png"
 import Foto from "../assets/icon-pictures/foto.png"
 import CloseIcon from "../assets/icon-pictures/close-icon.png"
