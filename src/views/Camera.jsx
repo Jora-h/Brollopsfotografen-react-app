@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import GalleryIcon from '../assets/icon-pictures/gallery-icon.png';
 
 export default function Camera() {
@@ -82,7 +82,7 @@ export default function Camera() {
       }
 
       <div className="btn-div">
-        {!photo ? <button className="camera-btn" onClick={captureHandler}>Föreviga ett ögonblick</button>: <button className="camera-btn">Fånga ett nytt ögonblick</button>}
+        {!photo ? <button className="camera-btn" onClick={captureHandler}>Föreviga ett ögonblick</button>:<NavLink to="/gallery" className="camera-btn">Fånga ett nytt ögonblick</NavLink>}
       </div>
     </div>
   );
