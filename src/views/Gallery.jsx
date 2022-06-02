@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import BrollopFotoLogo from "../assets/icon-pictures/brollop-foto-logo.png"
-import Foto from "../assets/icon-pictures/foto.png"
-import CloseIcon from "../assets/icon-pictures/close-icon.png"
+import BrollopFotoLogo from "../assets/icon-pictures/brollop-foto-logo.png";
+import CloseIcon from "../assets/icon-pictures/close-icon.png";
 import { useNavigate } from "react-router-dom";
 export default function Gallery() {
     const [galleryItems, setGalleryItems] = useState([]);

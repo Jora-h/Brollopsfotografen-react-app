@@ -32,7 +32,7 @@ export default function Camera() {
 
   useEffect(()=>{
     navigator.permissions.query({ name: "camera" }).then(res => {
-      if(res.state == "granted"){
+      if(res.state === "granted"){
         setIsCameraDisabled(false);
       } else {
         setIsCameraDisabled(true);
