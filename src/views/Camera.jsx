@@ -4,7 +4,7 @@ import GalleryIcon from '../assets/icon-pictures/gallery-icon.png';
 
 export default function Camera() {
   const [isCameraDisabled, setIsCameraDisabled] = useState(false);
-  const [isPhoto, setIsPhoto] = useState(false);
+  const [photo, setPhoto] = useState(null);
   const navigation = useNavigate();
   const videoRef = useRef(null);
   const photoRef = useRef(null);
@@ -40,18 +40,28 @@ export default function Camera() {
     });
   }, []);
   
+  useEffect(() => {
+    if (photo) {
+      let gallery = [];
+      if (localStorage.getItem('gallery')) {
+        gallery = JSON.parse(localStorage.getItem('gallery'));
+      }
+      gallery.push(photo)
+      localStorage.setItem('gallery', JSON.stringify(gallery));
+    }
+  }, [photo]);
 
   const captureHandler = () => {
-    let width = 500;
-    let height = width / (16/9);
     let video = videoRef.current;
-    let photo = photoRef.current;
-    photo.width = width;
-    photo.height= height;
-    let context =  photo.getContext('2d');
+    let width = video.clientWidth;
+    let height = video.clientHeight;
+    let photoCanvas = photoRef.current;
+    photoCanvas.width = width;
+    photoCanvas.height= height;
+    let context = photoCanvas.getContext('2d');
     context.drawImage(video, 0, 0, width, height);
-    // imageRef.current 
-    setIsPhoto(true);
+    const imageURL = photoCanvas.toDataURL("image/png");
+    setPhoto(imageURL);
   };
 
   return (
@@ -61,7 +71,7 @@ export default function Camera() {
       </div>
 
       <div className="camera">
-        {isPhoto ? null : <video ref={videoRef} autoPlay className="camera-screen" />}
+        {photo ? null : <video ref={videoRef} autoPlay className="camera-screen" />}
         <canvas ref={photoRef}></canvas>
       </div>
 
@@ -72,7 +82,7 @@ export default function Camera() {
       }
 
       <div className="btn-div">
-        {!isPhoto ? <button className="camera-btn" onClick={captureHandler}>Föreviga ett ögonblick</button>: <button className="camera-btn">Fånga ett nytt ögonblick</button>}
+        {!photo ? <button className="camera-btn" onClick={captureHandler}>Föreviga ett ögonblick</button>: <button className="camera-btn">Fånga ett nytt ögonblick</button>}
       </div>
     </div>
   );
