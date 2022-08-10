@@ -1,16 +1,49 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import GalleryIcon from '../assets/icon-pictures/gallery-icon.png';
+import BrollopFotoLogo from "../assets/icon-pictures/brollop-foto-logo.png";
+import { useCallback } from 'react';
 
 export default function Camera() {
   const [isCameraDisabled, setIsCameraDisabled] = useState(false);
   const [photo, setPhoto] = useState(null);
+  const [notificationPermission, setNotificationPermission] = useState('default');
   const navigation = useNavigate();
   const videoRef = useRef(null);
   const photoRef = useRef(null);
   const handelClick = () => {
     navigation('/gallery');
   };
+
+  const showNotification = useCallback(() => {
+    if(notificationPermission !== 'granted') return;
+
+    const notification = new Notification('Bröllopsfotografen', {
+      body: "Saved! click here to go to the gallery",
+      icon: BrollopFotoLogo
+    });
+
+    notification.onclick = function() {
+      navigation('/gallery');
+    };
+  }, [notificationPermission, navigation]);
+
+  // Notification Permissions
+  useEffect(() => {
+    if (!("Notification" in window)) {
+      console.log('This browser does not support desktop notification');
+    } else {
+      Notification.requestPermission((result) => {
+        if (result === 'granted') {
+          setNotificationPermission('granted');
+        } else if (result === 'denied') {
+          setNotificationPermission('denied');
+        } else {
+          setNotificationPermission('default');
+        }
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const getUserCamera = () => {
@@ -46,10 +79,11 @@ export default function Camera() {
       if (localStorage.getItem('gallery')) {
         gallery = JSON.parse(localStorage.getItem('gallery'));
       }
-      gallery.push(photo)
+      gallery.push(photo);
       localStorage.setItem('gallery', JSON.stringify(gallery));
+      showNotification();
     }
-  }, [photo]);
+  }, [photo, showNotification]);
 
   const captureHandler = () => {
     let video = videoRef.current;
