@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.af7c7558.css",
-    "main.js": "/static/js/main.0ca4b25f.js",
-    "static/js/787.86393166.chunk.js": "/static/js/787.86393166.chunk.js",
-    "service-worker.js": "/service-worker.js",
-    "static/media/brollop-foto-logo.png": "/static/media/brollop-foto-logo.849883562ebdca78d3e1.png",
-    "index.html": "/index.html",
-    "main.af7c7558.css.map": "/static/css/main.af7c7558.css.map",
-    "main.0ca4b25f.js.map": "/static/js/main.0ca4b25f.js.map",
-    "787.86393166.chunk.js.map": "/static/js/787.86393166.chunk.js.map"
+    "main.css": "/Brollopsfotografen-react-app/static/css/main.af7c7558.css",
+    "main.js": "/Brollopsfotografen-react-app/static/js/main.f0042314.js",
+    "static/js/787.86393166.chunk.js": "/Brollopsfotografen-react-app/static/js/787.86393166.chunk.js",
+    "service-worker.js": "/Brollopsfotografen-react-app/service-worker.js",
+    "static/media/brollop-foto-logo.png": "/Brollopsfotografen-react-app/static/media/brollop-foto-logo.849883562ebdca78d3e1.png",
+    "index.html": "/Brollopsfotografen-react-app/index.html",
+    "main.af7c7558.css.map": "/Brollopsfotografen-react-app/static/css/main.af7c7558.css.map",
+    "main.f0042314.js.map": "/Brollopsfotografen-react-app/static/js/main.f0042314.js.map",
+    "787.86393166.chunk.js.map": "/Brollopsfotografen-react-app/static/js/787.86393166.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.af7c7558.css",
-    "static/js/main.0ca4b25f.js"
+    "static/js/main.f0042314.js"
   ]
 }
