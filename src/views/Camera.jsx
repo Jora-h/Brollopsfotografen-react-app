@@ -36,10 +36,13 @@ export default function Camera() {
       Notification.requestPermission((result) => {
         if (result === 'granted') {
           setNotificationPermission('granted');
+          console.log('permission granted');
         } else if (result === 'denied') {
           setNotificationPermission('denied');
+          console.log('permission denied');
         } else {
           setNotificationPermission('default');
+          console.log('permission dismissed');
         }
       });
     }
@@ -80,8 +83,8 @@ export default function Camera() {
         gallery = JSON.parse(localStorage.getItem('gallery'));
       }
       gallery.push(photo);
-      localStorage.setItem('gallery', JSON.stringify(gallery));
       showNotification();
+      localStorage.setItem('gallery', JSON.stringify(gallery));
     }
   }, [photo, showNotification]);
 
